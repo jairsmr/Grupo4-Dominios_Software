@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+          crossorigin="anonymous"></script>
+  <link href="{{ url_for('static', path='/style.css') }}" rel="stylesheet">
+  <style>
+
+  </style>
+</head>
+<body>
+<div class="container-fluid">
+  <div class="chat-box">
+    <div class="chat-header">
+      Perguntas sobre concurso
+    </div>
+    <div class="chat-body">
+    </div>
+    <div class="chat-footer">
+    </div>
+  </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.min.js"></script>
+<script>
+  $(document).ready(function () {
+    const $chatBody = $('.chat-body')
+    const $chatFooter = $('.chat-footer')
+
+    function getPath(step) {
+      if(step) {
+        return '/step?step=' + step
+      } else {
+        return '/step'
+      }
+    }
+
+    function fetchStepAndAppend(step=null) {
+      $.ajax({
+        url: getPath(step),
+        type: 'GET',
+        success: function (data) {
+          $chatBody.append(`
+            <div class="receiver">
+              <div class="receiver-message">
+                ${data.message}
+              </div>
+            </div>
+          `)
+          $chatBody.scrollTop($chatBody[0].scrollHeight)
+          $chatFooter.empty()
+          data.options.forEach(function (button) {
+            $chatFooter.append(`
+              <button class="btn btn-primary option" data-id="${button.next_node}">${button.label}</button>
+            `)
+          })
+        },
+      })
+    }
+    fetchStepAndAppend()
+    $(document).on("click", ".option", function() {
+      const step = $(this).data('id')
+      $chatBody.append(`
+        <div class="sender">
+          <div class="sender-message">
+            ${$(this).text()}
+          </div>
+        </div>
+      `)
+      $chatBody.scrollTop($chatBody[0].scrollHeight)
+      fetchStepAndAppend(step)
+    });
+  });
+</script>
+</body>
+</html>

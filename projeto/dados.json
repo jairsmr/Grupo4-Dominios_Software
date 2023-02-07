@@ -1,0 +1,36 @@
+{
+    "start": {
+        "message": "Olá! Eu sou um chatbot especialista em informações sobre concursos. Como posso ajudá-lo hoje?",
+        "options": [
+            {
+                "label": "Quando será o próximo concurso?",
+                "next_node": "pergunta_proximo_concurso"
+            },
+            {
+                "label": "Quais são as etapas de um concurso?",
+                "next_node": "pergunta_etapas_concurso"
+            },
+            {
+                "label": "Quais são as matérias cobradas em um concurso?",
+                "next_node": "pergunta_materias_concurso"
+            },
+            {"label": "Outro", "next_node": "outro"}
+        ]
+    },
+    "pergunta_proximo_concurso": {
+        "message": "Você pode pesquisar no site do órgão responsável ou em plataformas especializadas em informações sobre concursos.",
+        "options": [{"label": "Voltar ao início", "next_node": "start"}]
+    },
+    "pergunta_etapas_concurso": {
+        "message": "As etapas de um concurso geralmente incluem inscrição, prova objetiva, prova discursiva (em alguns casos), avaliação de títulos (em alguns casos) e divulgação do resultado final.",
+        "options": [{"label": "Voltar ao início", "next_node": "start"}]
+    },
+    "pergunta_materias_concurso": {
+        "message": "As matérias cobradas em um concurso dependem da posição em questão e podem incluir conhecimentos gerais (como língua portuguesa, matemática, atualidades), conhecimentos específicos da área e habilidades técnicas.",
+        "options": [{"label": "Voltar ao início", "next_node": "start"}]
+    },
+    "outro": {
+        "message": "Desculpe, não entendi a sua pergunta. Por favor, especifique melhor ou escolha uma das opções no menu inicial.",
+        "options": [{"label": "Voltar ao início", "next_node": "start"}]
+    }
+}
