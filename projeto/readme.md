@@ -1,5 +1,3 @@
-// Escreva um readme mostrando como rodar o projeto fast api, e instalar as dependencias
-
 # FastAPI
 
 Para rodar o projeto, crie a virtual env
