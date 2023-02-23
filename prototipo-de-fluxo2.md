@@ -1,6 +1,6 @@
 # Protótipo 2
 
-**Usuário:** Olá!
+Usuário: Olá!
 
 Chatbot: Olá! Como posso ajudá-lo hoje em relação a concursos?
 
